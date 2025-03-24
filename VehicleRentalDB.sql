@@ -8,13 +8,14 @@ CREATE TABLE customer (
     last_name VARCHAR(50) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     phone VARCHAR(20) UNIQUE NOT NULL,
-    address TEXT NOT NULL
+    address TEXT NOT NULL,
+    created_at DATE NOT NULL
 );
 
 -- Categories Table
 CREATE TABLE category (
     category_id INT AUTO_INCREMENT PRIMARY KEY,
-    name ENUM('Economy', 'Premium', 'SUV', 'Luxury', 'Electric', 'Supercar', 'Truck', 'Convertible') NOT NULL,
+    name ENUM('Economy', 'Premium') NOT NULL,
     description TEXT
 );
 
@@ -39,6 +40,7 @@ CREATE TABLE booking (
     start_date DATE NOT NULL,
     end_date DATE NOT NULL,
     status ENUM('Pending', 'Confirmed', 'Cancelled', 'Completed') DEFAULT 'Pending',
+	created_at DATE NOT NULL,
     FOREIGN KEY (customer_id) REFERENCES customers(customer_id) ON DELETE CASCADE,
     FOREIGN KEY (vehicle_id) REFERENCES vehicles(vehicle_id) ON DELETE CASCADE
 );
@@ -50,6 +52,7 @@ CREATE TABLE payment (
     amount DECIMAL(10,2) NOT NULL,
     payment_method ENUM('Credit Card', 'Debit Card', 'PayPal', 'Bank Transfer') NOT NULL,
     status ENUM('Pending', 'Completed', 'Failed') DEFAULT 'Pending',
+	payment_date DATE NOT NULL,
     FOREIGN KEY (booking_id) REFERENCES bookings(booking_id) ON DELETE CASCADE
 );
 
@@ -60,6 +63,8 @@ CREATE TABLE insurance (
     policy_number VARCHAR(50) UNIQUE NOT NULL,
     provider VARCHAR(100) NOT NULL,
     coverage_details TEXT,
+	start_date DATE NOT NULL,
+    end_date DATE NOT NULL,
     FOREIGN KEY (vehicle_id) REFERENCES vehicles(vehicle_id) ON DELETE CASCADE
 );
 
@@ -81,6 +86,7 @@ CREATE TABLE review (
     vehicle_id INT NOT NULL,
     rating INT CHECK (rating BETWEEN 1 AND 5),
     comment TEXT,
+    review_date DATE NOT NULL,
     FOREIGN KEY (customer_id) REFERENCES customers(customer_id) ON DELETE CASCADE,
     FOREIGN KEY (vehicle_id) REFERENCES vehicles(vehicle_id) ON DELETE CASCADE
 );
