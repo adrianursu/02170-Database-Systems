@@ -29,7 +29,7 @@ CREATE TABLE vehicle (
     price_per_day DECIMAL(10,2) NOT NULL,
     status ENUM('Available', 'Rented', 'Maintenance') DEFAULT 'Available',
     category_id INT,
-    FOREIGN KEY (category_id) REFERENCES categories(category_id) ON DELETE SET NULL
+    FOREIGN KEY (category_id) REFERENCES category(category_id) ON DELETE SET NULL
 );
 
 -- Bookings Table
@@ -41,8 +41,8 @@ CREATE TABLE booking (
     end_date DATE NOT NULL,
     status ENUM('Pending', 'Confirmed', 'Cancelled', 'Completed') DEFAULT 'Pending',
 	created_at DATE NOT NULL,
-    FOREIGN KEY (customer_id) REFERENCES customers(customer_id) ON DELETE CASCADE,
-    FOREIGN KEY (vehicle_id) REFERENCES vehicles(vehicle_id) ON DELETE CASCADE
+    FOREIGN KEY (customer_id) REFERENCES customer(customer_id) ON DELETE CASCADE,
+    FOREIGN KEY (vehicle_id) REFERENCES vehicle(vehicle_id) ON DELETE CASCADE
 );
 
 -- Payments Table
@@ -53,7 +53,7 @@ CREATE TABLE payment (
     payment_method ENUM('Credit Card', 'Debit Card', 'PayPal', 'Bank Transfer') NOT NULL,
     status ENUM('Pending', 'Completed', 'Failed') DEFAULT 'Pending',
 	payment_date DATE NOT NULL,
-    FOREIGN KEY (booking_id) REFERENCES bookings(booking_id) ON DELETE CASCADE
+    FOREIGN KEY (booking_id) REFERENCES booking(booking_id) ON DELETE CASCADE
 );
 
 -- Insurance Table
@@ -65,7 +65,7 @@ CREATE TABLE insurance (
     coverage_details TEXT,
 	start_date DATE NOT NULL,
     end_date DATE NOT NULL,
-    FOREIGN KEY (vehicle_id) REFERENCES vehicles(vehicle_id) ON DELETE CASCADE
+    FOREIGN KEY (vehicle_id) REFERENCES vehicle(vehicle_id) ON DELETE CASCADE
 );
 
 -- Maintenance Table
@@ -76,7 +76,7 @@ CREATE TABLE maintenance (
     details TEXT NOT NULL,
     cost DECIMAL(10,2),
     status ENUM('Scheduled', 'Completed', 'In Progress') DEFAULT 'Scheduled',
-    FOREIGN KEY (vehicle_id) REFERENCES vehicles(vehicle_id) ON DELETE CASCADE
+    FOREIGN KEY (vehicle_id) REFERENCES vehicle(vehicle_id) ON DELETE CASCADE
 );
 
 -- Reviews Table
@@ -87,6 +87,6 @@ CREATE TABLE review (
     rating INT CHECK (rating BETWEEN 1 AND 5),
     comment TEXT,
     review_date DATE NOT NULL,
-    FOREIGN KEY (customer_id) REFERENCES customers(customer_id) ON DELETE CASCADE,
-    FOREIGN KEY (vehicle_id) REFERENCES vehicles(vehicle_id) ON DELETE CASCADE
+    FOREIGN KEY (customer_id) REFERENCES customer(customer_id) ON DELETE CASCADE,
+    FOREIGN KEY (vehicle_id) REFERENCES vehicle(vehicle_id) ON DELETE CASCADE
 );
