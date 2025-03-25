@@ -1,0 +1,10 @@
+SELECT 
+  c.first_name, 
+  c.last_name, 
+  v.make, 
+  v.model, 
+  b.start_date, 
+  b.end_date
+FROM booking b
+JOIN customer c ON b.customer_id = c.customer_id
+JOIN vehicle v ON b.vehicle_id = v.vehicle_id;
