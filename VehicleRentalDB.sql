@@ -1,6 +1,5 @@
 CREATE DATABASE VehicleRentalDB;
 USE VehicleRentalDB;
-
 -- Customers Table
 CREATE TABLE customer (
     customer_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -15,7 +14,7 @@ CREATE TABLE customer (
 -- Categories Table
 CREATE TABLE category (
     category_id INT AUTO_INCREMENT PRIMARY KEY,
-    name ENUM('Economy', 'Premium') NOT NULL,
+    name ENUM('Economy', 'Premium', 'SUV', 'Electric', 'Convertible') NOT NULL,
     description TEXT
 );
 
@@ -90,3 +89,4 @@ CREATE TABLE review (
     FOREIGN KEY (customer_id) REFERENCES customer(customer_id) ON DELETE CASCADE,
     FOREIGN KEY (vehicle_id) REFERENCES vehicle(vehicle_id) ON DELETE CASCADE
 );
+
