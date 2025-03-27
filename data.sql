@@ -85,7 +85,31 @@ VALUES
 
 ((SELECT customer_id FROM customer WHERE email='ivy.taylor@example.com'), 
  (SELECT vehicle_id FROM vehicle WHERE registration_number='STU901'), 
- CURDATE(), DATE_ADD(CURDATE(), INTERVAL 5 DAY), CURDATE());
+ CURDATE(), DATE_ADD(CURDATE(), INTERVAL 5 DAY), CURDATE()),
+ 
+((SELECT customer_id FROM customer WHERE email='jane.smith@example.com'), 
+ (SELECT vehicle_id FROM vehicle WHERE registration_number='XYZ123'), 
+ DATE_ADD(CURDATE(), INTERVAL 10 DAY), DATE_ADD(CURDATE(), INTERVAL 13 DAY), CURDATE()),
+
+((SELECT customer_id FROM customer WHERE email='alice.johnson@example.com'), 
+ (SELECT vehicle_id FROM vehicle WHERE registration_number='XYZ123'), 
+ DATE_ADD(CURDATE(), INTERVAL 15 DAY), DATE_ADD(CURDATE(), INTERVAL 18 DAY), CURDATE()),
+
+((SELECT customer_id FROM customer WHERE email='bob.williams@example.com'), 
+ (SELECT vehicle_id FROM vehicle WHERE registration_number='XYZ123'), 
+ DATE_ADD(CURDATE(), INTERVAL 20 DAY), DATE_ADD(CURDATE(), INTERVAL 22 DAY), CURDATE()),
+
+((SELECT customer_id FROM customer WHERE email='carol.brown@example.com'), 
+ (SELECT vehicle_id FROM vehicle WHERE registration_number='ABC987'), 
+ DATE_ADD(CURDATE(), INTERVAL 10 DAY), DATE_ADD(CURDATE(), INTERVAL 13 DAY), CURDATE()),
+
+((SELECT customer_id FROM customer WHERE email='david.jones@example.com'), 
+ (SELECT vehicle_id FROM vehicle WHERE registration_number='ABC987'), 
+ DATE_ADD(CURDATE(), INTERVAL 16 DAY), DATE_ADD(CURDATE(), INTERVAL 18 DAY), CURDATE()),
+
+((SELECT customer_id FROM customer WHERE email='eve.davis@example.com'), 
+ (SELECT vehicle_id FROM vehicle WHERE registration_number='DEF456'), 
+ DATE_ADD(CURDATE(), INTERVAL 12 DAY), DATE_ADD(CURDATE(), INTERVAL 14 DAY), CURDATE());
 
 -- Insert data into the Payments table
 INSERT INTO payment (booking_id, amount, payment_method, payment_date)
