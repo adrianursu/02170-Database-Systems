@@ -114,37 +114,37 @@ VALUES
 -- Insert data into the Payments table
 INSERT INTO payment (booking_id, amount, payment_method, payment_date)
 VALUES 
-((SELECT booking_id FROM booking WHERE customer_id=(SELECT customer_id FROM customer WHERE email='john.doe@example.com')), 
+((SELECT booking_id FROM booking WHERE customer_id=(SELECT customer_id FROM customer WHERE email='john.doe@example.com') LIMIT 1), 
 29.99 * 7, 'Credit Card', CURDATE()),
 
-((SELECT booking_id FROM booking WHERE customer_id=(SELECT customer_id FROM customer WHERE email='jane.smith@example.com')), 
+((SELECT booking_id FROM booking WHERE customer_id=(SELECT customer_id FROM customer WHERE email='jane.smith@example.com') LIMIT 1), 
 89.99 * 6, 'PayPal', CURDATE()),
 
-((SELECT booking_id FROM booking WHERE customer_id=(SELECT customer_id FROM customer WHERE email='alice.johnson@example.com')), 
+((SELECT booking_id FROM booking WHERE customer_id=(SELECT customer_id FROM customer WHERE email='alice.johnson@example.com') LIMIT 1), 
 27.99 * 4, 'Credit Card', CURDATE()),
 
-((SELECT booking_id FROM booking WHERE customer_id=(SELECT customer_id FROM customer WHERE email='bob.williams@example.com')), 
+((SELECT booking_id FROM booking WHERE customer_id=(SELECT customer_id FROM customer WHERE email='bob.williams@example.com') LIMIT 1), 
 79.99 * 5, 'Credit Card', CURDATE()),
 
-((SELECT booking_id FROM booking WHERE customer_id=(SELECT customer_id FROM customer WHERE email='carol.brown@example.com')), 
+((SELECT booking_id FROM booking WHERE customer_id=(SELECT customer_id FROM customer WHERE email='carol.brown@example.com') LIMIT 1), 
 49.99 * 6, 'Credit Card', CURDATE()),
 
-((SELECT booking_id FROM booking WHERE customer_id=(SELECT customer_id FROM customer WHERE email='david.jones@example.com')), 
+((SELECT booking_id FROM booking WHERE customer_id=(SELECT customer_id FROM customer WHERE email='david.jones@example.com') LIMIT 1), 
 59.99 * 7, 'PayPal', CURDATE()),
 
-((SELECT booking_id FROM booking WHERE customer_id=(SELECT customer_id FROM customer WHERE email='eve.davis@example.com')), 
+((SELECT booking_id FROM booking WHERE customer_id=(SELECT customer_id FROM customer WHERE email='eve.davis@example.com') LIMIT 1), 
 69.99 * 5, 'Credit Card', CURDATE()),
 
-((SELECT booking_id FROM booking WHERE customer_id=(SELECT customer_id FROM customer WHERE email='frank.miller@example.com')), 
+((SELECT booking_id FROM booking WHERE customer_id=(SELECT customer_id FROM customer WHERE email='frank.miller@example.com') LIMIT 1), 
 54.99 * 4, 'Credit Card', CURDATE()),
 
-((SELECT booking_id FROM booking WHERE customer_id=(SELECT customer_id FROM customer WHERE email='grace.wilson@example.com')), 
+((SELECT booking_id FROM booking WHERE customer_id=(SELECT customer_id FROM customer WHERE email='grace.wilson@example.com') LIMIT 1), 
 64.99 * 7, 'PayPal', CURDATE()),
 
-((SELECT booking_id FROM booking WHERE customer_id=(SELECT customer_id FROM customer WHERE email='henry.moore@example.com')), 
+((SELECT booking_id FROM booking WHERE customer_id=(SELECT customer_id FROM customer WHERE email='henry.moore@example.com') LIMIT 1), 
 84.99 * 6, 'Credit Card', CURDATE()),
 
-((SELECT booking_id FROM booking WHERE customer_id=(SELECT customer_id FROM customer WHERE email='ivy.taylor@example.com')), 
+((SELECT booking_id FROM booking WHERE customer_id=(SELECT customer_id FROM customer WHERE email='ivy.taylor@example.com') LIMIT 1), 
 25.99 * 5, 'Credit Card', CURDATE());
 
 -- Insert data into the Insurance table
