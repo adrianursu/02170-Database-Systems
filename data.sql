@@ -112,6 +112,7 @@ VALUES
  DATE_ADD(CURDATE(), INTERVAL 12 DAY), DATE_ADD(CURDATE(), INTERVAL 14 DAY), CURDATE());
 
 -- Insert data into the Payments table
+-- First INSERT block
 INSERT INTO payment (booking_id, amount, payment_method, payment_date)
 VALUES 
 ((SELECT booking_id FROM booking WHERE customer_id=(SELECT customer_id FROM customer WHERE email='john.doe@example.com') LIMIT 1), 
@@ -146,6 +147,47 @@ VALUES
 
 ((SELECT booking_id FROM booking WHERE customer_id=(SELECT customer_id FROM customer WHERE email='ivy.taylor@example.com') LIMIT 1), 
 25.99 * 5, 'Credit Card', CURDATE());
+
+-- Second INSERT block for the additional bookings
+INSERT INTO payment (booking_id, amount, payment_method, payment_date)
+VALUES 
+
+((SELECT booking_id FROM booking 
+  WHERE customer_id = (SELECT customer_id FROM customer WHERE email = 'jane.smith@example.com') 
+    AND vehicle_id = (SELECT vehicle_id FROM vehicle WHERE registration_number = 'XYZ123')
+  ORDER BY booking_id DESC LIMIT 1),
+29.99 * 3, 'Credit Card', CURDATE()),
+
+((SELECT booking_id FROM booking 
+  WHERE customer_id = (SELECT customer_id FROM customer WHERE email = 'alice.johnson@example.com') 
+    AND vehicle_id = (SELECT vehicle_id FROM vehicle WHERE registration_number = 'XYZ123')
+  ORDER BY booking_id DESC LIMIT 1),
+29.99 * 3, 'Credit Card', CURDATE()),
+
+((SELECT booking_id FROM booking 
+  WHERE customer_id = (SELECT customer_id FROM customer WHERE email = 'bob.williams@example.com') 
+    AND vehicle_id = (SELECT vehicle_id FROM vehicle WHERE registration_number = 'XYZ123')
+  ORDER BY booking_id DESC LIMIT 1),
+29.99 * 2, 'Credit Card', CURDATE()),
+
+((SELECT booking_id FROM booking 
+  WHERE customer_id = (SELECT customer_id FROM customer WHERE email = 'carol.brown@example.com') 
+    AND vehicle_id = (SELECT vehicle_id FROM vehicle WHERE registration_number = 'ABC987')
+  ORDER BY booking_id DESC LIMIT 1),
+89.99 * 3, 'Credit Card', CURDATE()),
+
+((SELECT booking_id FROM booking 
+  WHERE customer_id = (SELECT customer_id FROM customer WHERE email = 'david.jones@example.com') 
+    AND vehicle_id = (SELECT vehicle_id FROM vehicle WHERE registration_number = 'ABC987')
+  ORDER BY booking_id DESC LIMIT 1),
+89.99 * 2, 'PayPal', CURDATE()),
+
+((SELECT booking_id FROM booking 
+  WHERE customer_id = (SELECT customer_id FROM customer WHERE email = 'eve.davis@example.com') 
+    AND vehicle_id = (SELECT vehicle_id FROM vehicle WHERE registration_number = 'DEF456')
+  ORDER BY booking_id DESC LIMIT 1),
+27.99 * 2, 'Credit Card', CURDATE());
+
 
 -- Insert data into the Insurance table
 INSERT INTO insurance (vehicle_id, policy_number, provider, coverage_details, start_date, end_date)
